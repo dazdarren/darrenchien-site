@@ -129,6 +129,17 @@
     color: var(--accent);
   }
 
+  .video {
+    margin-top: 2.25rem;
+    aspect-ratio: 16 / 9;
+  }
+  .video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 6px;
+  }
+
   .colophon {
     margin-top: 2.75rem;
     padding-top: 2rem;
@@ -196,9 +207,18 @@
   <nav class="links">
     <a href="https://www.linkedin.com/in/darrenchien/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://positron.ai" target="_blank" rel="noopener">Positron AI</a>
-    <a href="https://siliconangle.com/2026/07/31/physical-ai-infrastructure-roboticsaiinfraleaders/#:~:text=We%20believe%20that%20inference%20is%20fundamentally%20an%20economics%20problem" target="_blank" rel="noopener">SiliconANGLE →</a>
-    <a href="https://www.youtube.com/watch?v=rD_z1670kGI" target="_blank" rel="noopener">theCUBE Interview →</a>
   </nav>
+
+  <div class="video">
+    <iframe
+      src="https://www.youtube.com/embed/rD_z1670kGI"
+      title="Darren Chien on theCUBE"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
 
   <p class="colophon">Outside of work: training and coaching jiu jitsu, powerlifting, USPSA/PCSL, and finding the best Korean food in the Bay Area.</p>
   <p>Currently reading: <em>Seveneves</em> by Neal Stephenson.</p>
