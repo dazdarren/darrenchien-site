@@ -107,25 +107,19 @@
   }
 
   .links {
-    margin-top: 2.75rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
+    margin-top: 1.75rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 0.75rem;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--muted);
   }
   .links a {
-    color: var(--fg);
+    color: var(--muted);
     text-decoration: none;
-    border: 1px solid var(--rule);
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    font-size: 0.88rem;
-    white-space: nowrap;
-    transition: border-color 0.15s, color 0.15s;
+    transition: color 0.15s;
   }
   .links a:hover {
-    border-color: var(--accent);
     color: var(--accent);
   }
 
@@ -199,14 +193,10 @@
     new markets.
   </p>
 
-  <blockquote>
-    "We believe that inference is fundamentally an economics problem."
-    <cite>theCUBE + NYSE Wired: Robotics &amp; AI Infra Leaders, 2026</cite>
-  </blockquote>
-
-  <nav class="links">
-    <a href="https://www.linkedin.com/in/darrenchien/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://positron.ai" target="_blank" rel="noopener">Positron AI</a>
+  <nav class="links" aria-label="External links">
+    <a href="https://www.linkedin.com/in/darrenchien/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://positron.ai" target="_blank" rel="noopener">positron.ai ↗</a>
   </nav>
 
   <div class="video">
@@ -219,6 +209,11 @@
       allowfullscreen>
     </iframe>
   </div>
+
+  <blockquote>
+    "We believe that inference is fundamentally an economics problem."
+    <cite>theCUBE + NYSE Wired: Robotics &amp; AI Infra Leaders, 2026</cite>
+  </blockquote>
 
   <p class="colophon">Outside of work: training and coaching jiu jitsu, powerlifting, USPSA/PCSL, and finding the best Korean food in the Bay Area.</p>
   <p>Currently reading: <em>Seveneves</em> by Neal Stephenson.</p>
