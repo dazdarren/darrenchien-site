@@ -61,9 +61,27 @@
     border: 0;
   }
 
-  .other-talks {
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+  .video-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 2rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .video-arrows {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .video-arrows button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #36546d;
+    font-size: 1.1rem;
+    cursor: pointer;
   }
 
   .links {
@@ -108,22 +126,26 @@
 
   <p>Recent talks and interviews.</p>
 
-  <div class="video">
-    <iframe
-      src="https://www.youtube.com/embed/rD_z1670kGI"
-      title="Darren Chien on theCUBE"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <p class="other-talks">
-    <a href="https://www.youtube.com/watch?v=uFI9_Gmdb5I&amp;t=1470s" target="_blank" rel="noopener">Lambda presentation in Korea</a>
-    &middot;
-    <a href="https://www.youtube.com/watch?v=kZuaV79Ij_w&amp;t=196s" target="_blank" rel="noopener">AI Global Conference panel</a>
-  </p>
+  <section aria-label="Interviews and presentations">
+    <div class="video">
+      <iframe
+        id="video-player"
+        src="https://www.youtube.com/embed/rD_z1670kGI"
+        title="Darren Chien on theCUBE"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-controls">
+      <span id="video-caption" aria-live="polite">theCUBE interview · 1 / 3</span>
+      <div class="video-arrows">
+        <button id="video-prev" aria-label="Previous video">←</button>
+        <button id="video-next" aria-label="Next video">→</button>
+      </div>
+    </div>
+  </section>
 
   <p>Outside of work: training and coaching jiu jitsu, powerlifting, USPSA/PCSL, and finding the best Korean food in the Bay Area.</p>
   <p>Currently reading: <em>Seveneves</em> by Neal Stephenson.</p>
@@ -133,3 +155,31 @@
     <a href="https://positron.ai" target="_blank" rel="noopener">Positron AI</a>
   </nav>
 </main>
+
+<script>
+  (function () {
+    var videos = [
+      { id: 'rD_z1670kGI', start: 0, title: 'Darren Chien on theCUBE', label: 'theCUBE interview' },
+      { id: 'uFI9_Gmdb5I', start: 1470, title: 'Darren Chien: Lambda presentation in Korea', label: 'Lambda presentation · Korea' },
+      { id: 'kZuaV79Ij_w', start: 196, title: 'Darren Chien: AI Global Conference panel discussion', label: 'AI Global Conference panel' }
+    ];
+    var index = 0;
+    var player = document.getElementById('video-player');
+    var caption = document.getElementById('video-caption');
+
+    function showVideo(next) {
+      index = (next + videos.length) % videos.length;
+      player.src = 'https://www.youtube.com/embed/' + videos[index].id +
+        (videos[index].start ? '?start=' + videos[index].start : '');
+      player.title = videos[index].title;
+      caption.textContent = videos[index].label + ' · ' + (index + 1) + ' / ' + videos.length;
+    }
+
+    document.getElementById('video-prev').addEventListener('click', function () {
+      showVideo(index - 1);
+    });
+    document.getElementById('video-next').addEventListener('click', function () {
+      showVideo(index + 1);
+    });
+  })();
+</script>
