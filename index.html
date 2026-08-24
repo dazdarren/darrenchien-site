@@ -139,7 +139,7 @@
       </iframe>
     </div>
     <div class="video-controls">
-      <span id="video-caption" aria-live="polite">theCUBE interview · 1 / 3</span>
+      <span id="video-caption" aria-live="polite">1 / 3</span>
       <div class="video-arrows">
         <button id="video-prev" aria-label="Previous video">←</button>
         <button id="video-next" aria-label="Next video">→</button>
@@ -159,9 +159,9 @@
 <script>
   (function () {
     var videos = [
-      { id: 'rD_z1670kGI', start: 0, title: 'Darren Chien on theCUBE', label: 'theCUBE interview' },
-      { id: 'uFI9_Gmdb5I', start: 1470, title: 'Darren Chien: Lambda presentation in Korea', label: 'Lambda presentation · Korea' },
-      { id: 'kZuaV79Ij_w', start: 196, title: 'Darren Chien: AI Global Conference panel discussion', label: 'AI Global Conference panel' }
+      { id: 'rD_z1670kGI', start: 0, title: 'Darren Chien on theCUBE' },
+      { id: 'uFI9_Gmdb5I', start: 1470, title: 'Darren Chien: Lambda presentation in Korea' },
+      { id: 'kZuaV79Ij_w', start: 196, title: 'Darren Chien: AI Global Conference panel discussion' }
     ];
     var index = 0;
     var player = document.getElementById('video-player');
@@ -172,7 +172,7 @@
       player.src = 'https://www.youtube.com/embed/' + videos[index].id +
         (videos[index].start ? '?start=' + videos[index].start : '');
       player.title = videos[index].title;
-      caption.textContent = videos[index].label + ' · ' + (index + 1) + ' / ' + videos.length;
+      caption.textContent = (index + 1) + ' / ' + videos.length;
     }
 
     document.getElementById('video-prev').addEventListener('click', function () {
