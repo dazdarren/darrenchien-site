@@ -149,14 +149,12 @@
 
   <p>Recent talks and interviews:</p>
 
-  <p><a href="https://www.nasdaq.com/videos/positron-ai" target="_blank" rel="noopener">Nasdaq: Positron AI — interview with Michael Spector</a></p>
-
   <section aria-label="Interviews and presentations">
     <div class="video">
       <iframe
         id="video-player"
-        src="https://www.youtube.com/embed/_keLh5gFEM0"
-        title="Darren Chien at theCUBE + NYSE Wired: AI Factories"
+        src="https://cdn.jwplayer.com/players/UrtkF4eL-UINd0LJW.html"
+        title="Darren Chien on Nasdaq: Positron AI with Michael Spector"
         loading="lazy"
         referrerpolicy="strict-origin-when-cross-origin"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -164,7 +162,7 @@
       </iframe>
     </div>
     <div class="video-controls">
-      <span id="video-caption" aria-live="polite">1 / 4</span>
+      <span id="video-caption" aria-live="polite">1 / 5</span>
       <div class="video-arrows">
         <button id="video-prev" aria-label="Previous video">←</button>
         <button id="video-next" aria-label="Next video">→</button>
@@ -184,6 +182,7 @@
 <script>
   (function () {
     var videos = [
+      { src: 'https://cdn.jwplayer.com/players/UrtkF4eL-UINd0LJW.html', title: 'Darren Chien on Nasdaq: Positron AI with Michael Spector' },
       { id: '_keLh5gFEM0', start: 0, title: 'Darren Chien at theCUBE + NYSE Wired: AI Factories' },
       { id: 'rD_z1670kGI', start: 0, title: 'Darren Chien on theCUBE' },
       { id: 'uFI9_Gmdb5I', start: 1470, title: 'Darren Chien: Lambda presentation in Korea' },
@@ -195,7 +194,7 @@
 
     function showVideo(next) {
       index = (next + videos.length) % videos.length;
-      player.src = 'https://www.youtube.com/embed/' + videos[index].id +
+      player.src = videos[index].src || 'https://www.youtube.com/embed/' + videos[index].id +
         (videos[index].start ? '?start=' + videos[index].start : '');
       player.title = videos[index].title;
       caption.textContent = (index + 1) + ' / ' + videos.length;
