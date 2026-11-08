@@ -126,6 +126,20 @@
   }
   .video-poster:focus-visible { outline: 3px solid #36546d; outline-offset: 3px; }
 
+  .video-caption { margin: 0 0 0.75rem; }
+
+  .video-caption h2 {
+    margin: 0 0 0.15rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .video-caption p {
+    margin: 0;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
   .video-controls {
     display: flex;
     align-items: center;
@@ -182,7 +196,7 @@
       <iframe
         id="video-player"
         src="https://cdn.jwplayer.com/players/UrtkF4eL-UINd0LJW.html"
-        title="Darren Chien on Nasdaq: Positron AI with Michael Spector"
+        title="Positron AI on Nasdaq"
         loading="lazy"
         referrerpolicy="strict-origin-when-cross-origin"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -192,8 +206,12 @@
         <img src="/nasdaq-interview-thumbnail.svg" width="960" height="540" alt="Darren Chien and Michael Spector seated at Nasdaq MarketSite with Positron AI signage">
       </button>
     </div>
+    <div class="video-caption" aria-live="polite" aria-atomic="true">
+      <h2 id="video-title">Positron AI on Nasdaq</h2>
+      <p id="video-description">With Michael Spector on what cheaper AI inference could let businesses build.</p>
+    </div>
     <div class="video-controls">
-      <span id="video-caption" aria-live="polite">1 / 5</span>
+      <span id="video-count">1 / 5</span>
       <div class="video-arrows">
         <button id="video-prev" aria-label="Previous video">←</button>
         <button id="video-next" aria-label="Next video">→</button>
@@ -213,15 +231,41 @@
 <script>
   (function () {
     var videos = [
-      { src: 'https://cdn.jwplayer.com/players/UrtkF4eL-UINd0LJW.html', title: 'Darren Chien on Nasdaq: Positron AI with Michael Spector' },
-      { id: '_keLh5gFEM0', start: 0, title: 'Darren Chien at theCUBE + NYSE Wired: AI Factories' },
-      { id: 'rD_z1670kGI', start: 0, title: 'Darren Chien on theCUBE' },
-      { id: 'uFI9_Gmdb5I', start: 1470, title: 'Darren Chien: Lambda presentation in Korea' },
-      { id: 'kZuaV79Ij_w', start: 346, title: 'Darren Chien: AI Global Conference panel discussion' }
+      {
+        src: 'https://cdn.jwplayer.com/players/UrtkF4eL-UINd0LJW.html',
+        title: 'Positron AI on Nasdaq',
+        description: 'With Michael Spector on what cheaper AI inference could let businesses build.'
+      },
+      {
+        id: '_keLh5gFEM0',
+        start: 0,
+        title: 'AI Factories on theCUBE + NYSE Wired',
+        description: 'How tokens per dollar and per watt shape which chips make sense for different inference workloads.'
+      },
+      {
+        id: 'rD_z1670kGI',
+        start: 0,
+        title: 'Robotics & AI Infra Leaders on theCUBE + NYSE Wired',
+        description: 'Why prefill and decode benefit from different hardware and how existing data centers can host inference.'
+      },
+      {
+        id: 'uFI9_Gmdb5I',
+        start: 1470,
+        title: 'Introducing Lambda at AI Global Conference',
+        description: 'A talk in Seoul on Lambda’s GPU cloud, 1-Click Clusters, and work with SK Telecom.'
+      },
+      {
+        id: 'kZuaV79Ij_w',
+        start: 346,
+        title: 'AI Global Conference Panel',
+        description: 'A panel from the Seoul conference on AI computing infrastructure and models.'
+      }
     ];
     var index = 0;
     var player = document.getElementById('video-player');
-    var caption = document.getElementById('video-caption');
+    var title = document.getElementById('video-title');
+    var description = document.getElementById('video-description');
+    var count = document.getElementById('video-count');
     var poster = document.getElementById('video-poster');
 
     poster.addEventListener('click', function () {
@@ -231,11 +275,14 @@
 
     function showVideo(next) {
       index = (next + videos.length) % videos.length;
-      player.src = videos[index].src || 'https://www.youtube.com/embed/' + videos[index].id +
-        (videos[index].start ? '?start=' + videos[index].start : '');
-      player.title = videos[index].title;
-      poster.hidden = !videos[index].src;
-      caption.textContent = (index + 1) + ' / ' + videos.length;
+      var video = videos[index];
+      player.src = video.src || 'https://www.youtube.com/embed/' + video.id +
+        (video.start ? '?start=' + video.start : '');
+      player.title = video.title;
+      title.textContent = video.title;
+      description.textContent = video.description;
+      poster.hidden = !video.src;
+      count.textContent = (index + 1) + ' / ' + videos.length;
     }
 
     document.getElementById('video-prev').addEventListener('click', function () {
